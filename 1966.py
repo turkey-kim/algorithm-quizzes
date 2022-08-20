@@ -8,29 +8,29 @@ t = int(sys.stdin.readline())
 
 for _ in range(t):
     n, x = map(int, sys.stdin.readline().split())
-    a = list(map(int, sys.stdin.readline().split()))
+    que = list(map(int, sys.stdin.readline().split()))
     res = list()
-    a = deque(a)
-    d = a[x] # x번째의 변수를 따로 저장해둔다.
-    a[x] = 0 # x번째의 수를 정확히 구분하기 위하여 0으로 저장한다.
+    que = deque(que)
+    target = que[x] # x번째의 변수를 따로 저장해둔다.
+    que[x] = 0 # x번째의 수를 정확히 구분하기 위하여 0으로 저장한다.
     
-    while a:
-        M = max(a) #반복연산을 줄이기 위해 따로 변수로 최댓값을 저장.
-        if M < d and (0 in a): # 0으로 저장한 x번째의 원래값 d가 큐 속의 최대값이 되는 경우를 고려하기 위해 작성.
-            M = d   
+    while que:
+        M = max(que) #반복연산을 줄이기 위해 따로 변수로 최댓값을 저장.
+        if M < target and (0 in que): # 0으로 저장한 x번째의 원래값 d가 큐 속의 최대값이 되는 경우를 고려하기 위해 작성.
+            M = target  
             
-        if a[0] >= M: # 아래는 기본 로직.
-            y = a.popleft()
+        if que[0] >= M: # 아래는 기본 로직.
+            y = que.popleft()
             res.append(y)
-        elif a[0] == 0 and d >= M: # 큐 속 0번 인덱스가 x번 째 수일 경우의 연산(1)
+        elif que[0] == 0 and target >= M: # 큐 속 0번 인덱스가 x번 째 수일 경우의 연산(1)
             res.append(0)
-            a.popleft()
-        elif a[0] == 0 and d < M: # 큐 속 0번 인덱스가 x번 째 수일 경우의 연산(2)
-            y = a.popleft()
-            a.append(y)       
+            que.popleft()
+        elif que[0] == 0 and target < M: # 큐 속 0번 인덱스가 x번 째 수일 경우의 연산(2)
+            y = que.popleft()
+            que.append(y)       
         else:
-            y = a.popleft()
-            a.append(y)
+            y = que.popleft()
+            que.append(y)
 
     print(res.index(0) +1) # 뽑힌 순서대로 저장된 배열에서 x번째 수가 저장된 순서 출력.
 
