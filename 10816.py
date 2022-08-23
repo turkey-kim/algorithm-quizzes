@@ -1,4 +1,4 @@
-# baekjoob 10816
+# baekjoon 10816
 
 import sys
 sys.setrecursionlimit(2500)
@@ -36,4 +36,4 @@ for i in m:
     end = len(n)-1
     print(bs(i,start,end), end=' ')
 
-# 결과는 나오지만, 시간초
+# 결과는 나오지만, 시간초과.
