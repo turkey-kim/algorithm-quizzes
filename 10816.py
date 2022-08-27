@@ -13,20 +13,23 @@ def bs(i,start,end):
     while start <= end:
         mid = (start+end)//2
         if i == n[mid]:
-            if i != n[start] and i != n[end]:
-                start += 1
-                end -= 1
-            elif i == n[start] and i != n[end]:
-                end -= 1
-            elif i != n[start] and i == n[end]:
-                start += 1
-            else:
-                return (end-start+1)
-            
+            start = mid
+            end = mid
+            while (n[start] == i) or (n[end] == i) or not n[start] or not n[end]:
+                if n[start] == i:
+                    start -= 1
+                elif n[end] == i:
+                    end += 1
+            start += 1
+            end -= 1
+            return (end-start+1)
+                    
+                             
         elif i < n[mid]:
             end = mid - 1
         else:
             start = mid + 1
+
             
         if start > end:
             return 0
@@ -37,3 +40,5 @@ for i in m:
     print(bs(i,start,end), end=' ')
 
 # 결과는 나오지만, 시간초과.
+# 6 3 2 10 10 10 -10 -10 7 3
+# 10 9 -5 2 3 4 5 -10
