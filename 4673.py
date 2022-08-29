@@ -13,6 +13,5 @@ for i in range(1,10001):
 
 for i in range(1,10001):
     if i not in arr:
-        print(i)
-    
+        print(i)    
 
